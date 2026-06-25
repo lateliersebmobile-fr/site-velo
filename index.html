@@ -3,94 +3,909 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier Séb Mobile — Réparation de vélos & VAE à domicile</title>
+    <meta name="description" content="Réparation vélo & VAE à domicile Lens, Liévin, Loos-en-Gohelle, Angres. Intervention rapide, devis gratuit, pièces d'origine. Appelez le 06.81.03.51.17.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="canonical" href="https://ateliersebmobile.fr/">
+    <title>Atelier Séb Mobile — Réparation vélo & VAE à domicile | Lens · Liévin · Bassin Minier</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        /* ===== DESIGN SYSTEM ===== */
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-base: #111111;
+            --bg-elevated: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #242424;
+            --border-subtle: #2a2a2a;
+            --border-accent: #3d1a1a;
+            --text-primary: #fafafa;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --brand-red: #dc2626;
+            --brand-red-glow: #dc2626cc;
+            --brand-amber: #f59e0b;
+            --brand-amber-glow: #f59e0bcc;
+            --brand-green: #22c55e;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-soft: 0 4px 24px rgba(0,0,0,.4);
+            --shadow-glow-red: 0 0 40px rgba(220,38,38,.15);
+            --shadow-glow-amber: 0 0 40px rgba(245,158,11,.15);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    <header class="bg-gradient-to-r divide-y from-blue-600 to-blue-800 text-white py-12 px-4 text-center shadow-lg">
-        <div class="max-w-3xl mx-auto">
-            <span class="text-4xl">🔧</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2">Atelier Séb Mobile</h1>
-            <p class="text-lg md:text-xl font-light mt-3 opacity-90">
-                Réparation & entretien de vélos et VAE directement chez vous.
-            </p>
-            <div class="mt-4 inline-block bg-blue-500 text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
-                📍 Secteur Lens - Liévin (62)
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+
+        /* ===== BASE ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== BACKGROUND SYSTEM ===== */
+        .bg-master {
+            position: fixed; inset: 0; z-index: -2;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 100% 100%, rgba(245,158,11,.06) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 0% 50%, rgba(34,197,94,.04) 0%, transparent 50%),
+                var(--bg-deep);
+        }
+        .bg-master::before {
+            content: ""; position: absolute; inset: 0; z-index: 1; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .bg-master::after {
+            content: ""; position: absolute; inset: 0; z-index: 2;
+            background: linear-gradient(180deg, transparent 0%, var(--bg-deep) 100%);
+            pointer-events: none;
+        }
+
+        .hero-bg {
+            position: absolute; inset: 0; z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center 30%;
+        }
+        .hero-bg::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,.95) 0%, rgba(220,38,38,.25) 50%, rgba(10,10,10,.98) 100%);
+        }
+
+        /* ===== GLASSMORPHISM ===== */
+        .glass {
+            background: linear-gradient(135deg, rgba(30,30,30,.85) 0%, rgba(26,26,26,.92) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-subtle);
+            border-top: 1px solid rgba(255,255,255,.05);
+            border-left: 1px solid rgba(255,255,255,.03);
+            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,.02);
+        }
+        .glass-strong {
+            background: linear-gradient(135deg, rgba(30,30,30,.92) 0%, rgba(22,22,22,.98) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid var(--border-accent);
+            box-shadow: var(--shadow-soft), var(--shadow-glow-red), inset 0 1px 0 rgba(220,38,38,.05);
+        }
+        .glass-amber {
+            border-color: #3d2a0a;
+            box-shadow: var(--shadow-soft), var(--shadow-glow-amber), inset 0 1px 0 rgba(245,158,11,.05);
+        }
+        .glass-green {
+            border-color: #14532d;
+            box-shadow: var(--shadow-soft), 0 0 40px rgba(34,197,94,.1), inset 0 1px 0 rgba(34,197,94,.05);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            @apply relative overflow-hidden px-8 py-4 rounded-xl font-bold text-base text-white transition-all duration-300;
+            background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%);
+            box-shadow: 0 4px 20px rgba(220,38,38,.3), inset 0 1px 0 rgba(255,255,255,.1);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(220,38,38,.4), inset 0 1px 0 rgba(255,255,255,.15); }
+        .btn-primary:active { transform: translateY(0) scale(.98); }
+        .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--brand-red-glow), 0 8px 32px rgba(220,38,38,.4); }
+
+        .btn-secondary {
+            @apply relative px-8 py-4 rounded-xl font-bold text-base text-white transition-all duration-300;
+            background: linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.02) 100%);
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover { background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.05) 100%); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
+        .btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,.2); }
+
+        .btn-whatsapp {
+            @apply relative px-8 py-4 rounded-xl font-bold text-base text-white transition-all duration-300;
+            background: linear-gradient(135deg, var(--brand-green) 0%, #16a34a 100%);
+            box-shadow: 0 4px 20px rgba(34,197,94,.3), inset 0 1px 0 rgba(255,255,255,.1);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow { 0%,100% { box-shadow: 0 4px 20px rgba(34,197,94,.3), 0 0 0 0 rgba(34,197,94,.4), inset 0 1px 0 rgba(255,255,255,.1); } 50% { box-shadow: 0 4px 20px rgba(34,197,94,.4), 0 0 0 12px rgba(34,197,94,0), inset 0 1px 0 rgba(255,255,255,.15); } }
+        .btn-whatsapp:hover { transform: translateY(-2px); animation: none; box-shadow: 0 8px 32px rgba(34,197,94,.45), inset 0 1px 0 rgba(255,255,255,.15); }
+
+        .btn-ghost {
+            @apply px-4 py-2 rounded-lg text-sm font-medium text-white/70 transition-all duration-200;
+            background: transparent; border: 1px solid transparent;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,.05); color: var(--text-primary); }
+
+        /* ===== FLOATING LABELS ===== */
+        .field { @apply relative; }
+        .field-input {
+            @apply w-full px-4 py-3.5 rounded-xl text-white placeholder-transparent transition-all duration-200;
+            background: rgba(255,255,255,.03);
+            border: 1px solid var(--border-subtle);
+        }
+        .field-input:focus { @apply outline-none; border-color: var(--brand-red); box-shadow: 0 0 0 3px var(--brand-red-glow); background: rgba(255,255,255,.05); }
+        .field-input::placeholder { color: transparent; }
+        .field-label {
+            @apply absolute left-4 top-3.5 text-base text-white/40 pointer-events-none transition-all duration-200;
+            transform-origin: left top;
+        }
+        .field-input:focus + .field-label,
+        .field-input:not(:placeholder-shown) + .field-label,
+        .field-input.has-value + .field-label {
+            transform: translateY(-1.75rem) scale(0.8);
+            color: var(--brand-red);
+        }
+        .field-input.error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,.2); }
+        .field-error { @apply mt-1.5 text-sm text-red-400 flex items-center gap-1.5; }
+        .field-error::before { content: ""; width: 5px; height: 5px; background: #ef4444; border-radius: 50%; flex-shrink: 0; animation: shake .4s ease-out; }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+
+        .field-select { @apply field-input appearance-none bg-no-repeat bg-right-4 center pr-12 cursor-pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); }
+        .field-select:focus { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23dc2626' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); }
+
+        /* ===== SERVICE CARDS ===== */
+        .service-card {
+            @apply glass p-6 rounded-2xl transition-all duration-300 relative overflow-hidden;
+        }
+        .service-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-amber));
+            opacity: 0; transition: opacity .3s;
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(220,38,38,.3);
+            box-shadow: var(--shadow-soft), var(--shadow-glow-red), inset 0 1px 0 rgba(255,255,255,.03);
+        }
+        .service-card.featured {
+            @apply glass-strong;
+            border-color: var(--brand-red);
+        }
+        .service-card.featured::before { opacity: 1; }
+        .service-icon {
+            @apply w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300;
+        }
+        .service-card:hover .service-icon { transform: scale(1.08) rotate(-2deg); }
+
+        .service-badge {
+            @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-3;
+        }
+        .badge-forfait { background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3); color: #fca5a5; }
+        .badge-vae { background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3); color: #fcd34d; }
+        .badge-option { background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3); color: #93c5fd; }
+
+        .service-features { @apply space-y-2 mb-5; }
+        .service-features li {
+            @apply flex items-center gap-2 text-sm text-white/60;
+        }
+        .service-features li::before {
+            content: ""; width: 5px; height: 5px; border-radius: 50%;
+            background: var(--brand-red); flex-shrink: 0;
+        }
+        .service-price {
+            @apply flex items-baseline gap-2 text-white;
+        }
+        .service-price .amount { @apply text-3xl font-extrabold; }
+        .service-price .unit { @apply text-white/50; }
+        .service-cta { @apply w-full mt-4; }
+
+        /* ===== PRICING TABLE ===== */
+        .pricing-table { @apply w-full; }
+        .pricing-table th {
+            @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-white/40 border-b border-white/10;
+        }
+        .pricing-table td { @apply px-4 py-4 text-sm border-b border-white/5; }
+        .pricing-table tbody tr { @apply transition-colors; }
+        .pricing-table tbody tr:hover { background: rgba(255,255,255,.02); }
+        .pricing-table tbody tr.recommended {
+            background: linear-gradient(135deg, rgba(220,38,38,.05) 0%, rgba(245,158,11,.03) 100%);
+            border-left: 3px solid var(--brand-red);
+        }
+        .pricing-table tbody tr.vae-row {
+            background: linear-gradient(135deg, rgba(245,158,11,.05) 0%, rgba(220,38,38,.03) 100%);
+            border-left: 3px solid var(--brand-amber);
+        }
+        .price-cell {
+            @apply inline-flex items-baseline gap-1 px-3 py-1.5 rounded-lg font-bold text-sm transition-all duration-200;
+        }
+        .price-red { background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3); color: #fca5a5; }
+        .price-amber { background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3); color: #fcd34d; }
+        .price-green { background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3); color: #86efac; }
+        .price-included { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: #a3a3a3; }
+
+        .check-cell { @apply text-center py-2; }
+        .check-icon,
+        .cross-icon {
+            @apply w-5 h-5 inline-flex items-center justify-center;
+        }
+
+        /* ===== TRUST SIGNALS ===== */
+        .trust-badge {
+            @apply flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+            background: rgba(255,255,255,.03);
+            border: 1px solid var(--border-subtle);
+        }
+        .trust-badge:hover { border-color: rgba(220,38,38,.4); background: rgba(220,38,38,.05); }
+
+        /* ===== ZONE CARDS ===== */
+        .zone-card {
+            @apply glass p-4 rounded-xl text-center transition-all duration-300 cursor-pointer;
+        }
+        .zone-card:hover { border-color: rgba(220,38,38,.4); transform: scale(1.02); }
+        .zone-card.primary { @apply glass-strong; }
+
+        /* ===== STICKY CTA ===== */
+        .sticky-cta-bar {
+            @apply fixed bottom-0 left-0 right-0 z-50 md:hidden px-4 pb-4 safe-area-inset-bottom;
+            background: linear-gradient(180deg, transparent, var(--bg-deep) 30%);
+        }
+        .sticky-cta-inner {
+            @apply max-w-xl mx-auto glass-strong rounded-2xl p-3 shadow-2xl;
+            animation: slideUp .5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ===== TOAST ===== */
+        .toast { @apply px-4 py-3 rounded-xl shadow-2xl text-sm font-medium max-w-xs animate-in; animation: slideIn .3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+        .toast-success { @apply bg-green-600/95 text-white border border-green-400/30; backdrop-filter: blur(10px); }
+        .toast-error { @apply bg-red-600/95 text-white border border-red-400/30; backdrop-filter: blur(10px); }
+
+        /* ===== SCROLLBAR & SELECTION ===== */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        ::selection { background: rgba(220,38,38,.3); color: var(--text-primary); }
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible { outline: 2px solid var(--brand-red); outline-offset: 2px; }
+
+        /* ===== UTILITIES ===== */
+        .text-gradient-brand { background: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-amber) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .divider-brand { height: 2px; background: linear-gradient(90deg, transparent, var(--brand-red), var(--brand-amber), transparent); border-radius: 2px; max-width: 100px; margin: 0 auto; }
+
+        /* ===== ENTRANCE ANIMATIONS ===== */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { animation: fadeUp .8s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0; }
+        .delay-1 { animation-delay: 100ms; } .delay-2 { animation-delay: 200ms; } .delay-3 { animation-delay: 300ms; }
+        .delay-4 { animation-delay: 400ms; } .delay-5 { animation-delay: 500ms; } .delay-6 { animation-delay: 600ms; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-up { animation: none; opacity: 1; }
+            * { animation: none !important; transition: none !important; }
+        }
+
+        /* ===== RESPONSIVE TABLE ===== */
+        @media (max-width: 768px) {
+            .pricing-table thead { display: none; }
+            .pricing-table tbody tr { display: block; margin-bottom: 1rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
+            .pricing-table td { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-subtle); }
+            .pricing-table td:last-child { border-bottom: none; }
+            .pricing-table td::before { content: attr(data-label); font-weight: 600; color: var(--text-secondary); }
+            .pricing-table td.check-cell::before { content: "Inclus"; }
+        }
+
+        /* ===== ICON CENTERING FIXES ===== */
+        .trust-badge svg { vertical-align: middle; }
+        .check-cell svg { display: inline-flex !important; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body class="min-h-screen" x-data="page()" x-init="init()">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://ateliersebmobile.fr/#business",
+      "name": "Atelier Séb Mobile",
+      "description": "Service de réparation et d'entretien de vélos et VAE 100% mobile à domicile dans le Bassin Minier (Lens, Liévin, Loos-en-Gohelle, Angres, Souchez, Aix-Noulette).",
+      "url": "https://ateliersebmobile.fr/",
+      "telephone": "+33681035117",
+      "email": "lateliersebmobile@gmail.com",
+      "logo": "https://ateliersebmobile.fr/logo.png",
+      "image": "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80",
+      "priceRange": "35-75 €",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer, Mobile Payment",
+      "currenciesAccepted": "EUR",
+      "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 50.421, "longitude": 2.823 }, "geoRadius": "25000" },
+      "address": { "@type": "PostalAddress", "streetAddress": "Secteur Liévin", "addressLocality": "Liévin", "addressRegion": "Hauts-de-France", "postalCode": "62800", "addressCountry": "FR" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 50.421, "longitude": 2.823 },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "16:00" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog", "name": "Forfaits réparation vélo",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Forfait Sécurité", "description": "Contrôle points clés, serrages, réglage freins, dérailleurs, roues, lubrification" }, "price": "35", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Révision Standard", "description": "Sécurité + dévoilage roues, lubrification complète, graissage câbles" }, "price": "55", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Révision Complète VAE", "description": "Standard + diagnostic électrique, batterie, connecteurs, firmware" }, "price": "75", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Réparation Crevaison", "description": "Remplacement chambre à air + contrôle pneu (par roue)" }, "price": "15", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
+        ]
+      },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "27", "bestRating": "5", "worstRating": "1" },
+      "sameAs": ["https://www.facebook.com/ateliersebmobile", "https://wa.me/33681035117"]
+    }
+    </script>
+
+    <!-- MASTER BACKGROUND -->
+    <div class="bg-master" aria-hidden="true"></div>
+
+    <!-- HEADER / HERO -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <nav class="absolute top-0 left-0 right-0 z-20 px-4 py-5" aria-label="Navigation principale">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2 text-white font-extrabold text-xl tracking-tight" aria-label="Atelier Séb Mobile - Accueil">
+                    <span class="relative" aria-hidden="true">
+                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </span>
+                    <span class="hidden sm:block">Atelier Séb Mobile</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#prestations" class="btn-ghost text-sm">Prestations</a>
+                    <a href="#tarifs" class="btn-ghost text-sm">Tarifs</a>
+                    <a href="#zone" class="btn-ghost text-sm">Zone</a>
+                    <a href="#contact" class="btn-ghost text-sm">Contact</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="tel:+33681035117" class="hidden sm:btn-ghost px-4 py-2" aria-label="Appeler le 06.81.03.51.17">
+                        <svg class="w-5 h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        06.81.03.51.17
+                    </a>
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo%20%F0%9F%9A%B4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp px-5 py-2.5 text-sm" aria-label="Écrire sur WhatsApp">
+                        <svg class="w-5 h-5 inline-block mr-1.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886c0-3.688 2.318-6.922 5.794-7.716 3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222zm1.895-4.638c-.273-.243-.57-.562-.895-.895-.34-.35-.69-.73-.895-1.018-.19-.272-.368-.52-.52-.775-.15-.25-.273-.373-.273-.373s.149-.405.347-.57c.198-.164.248-.298.298-.497.05-.199-.025-.372-.074-.522-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347-.445-.222-.836-.344-1.093-.466-.258-.122-.496-.198-.748-.198-.252 0-.504.076-.756.223-.3.173-.633.643-.916 1.382-.19.51-.24.854-.24 1.042 0 .198.05.372.1.52.05.15.1.299.1.448 0 .149-.05.298-.149.447-.098.149-.272.248-.52.397-.248.149-.743.173-1.36.05-.67-.124-1.36-.422-1.637-.57-.273-.149-.372-.124-.497 0-.124.124-.273.322-.397.57-.124.248-.198.57-.198.822 0 .273.074.52.198.743.124.222.323.543.52.895.198.372.347.57.57.719.222.148.445.198.669.198.199 0 .397-.025.57-.1.173-.074.472-.347.669-.72.198-.373.247-.72.247-1.018 0-.298-.049-.544-.198-.82-.149-.273-.372-.52-.57-.743z"/></svg>
+                        WhatsApp
+                    </a>
+                </div>
             </div>
-        </div>
+        </nav>
+
+        <main class="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:py-32 lg:py-40">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="animate-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3); color: #fca5a5;">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </span>
+                    Disponible cette semaine — Intervention sous 24h
+                </div>
+
+                <h1 id="hero-title" class="animate-fade-up delay-1 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6">
+                    Votre vélo réparé <span class="text-gradient-brand">chez vous</span>, sans lever le petit doigt
+                </h1>
+
+                <p class="animate-fade-up delay-2 text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Réparation &amp; entretien <strong class="text-white">vélo, VAE, cargo, route</strong> — à domicile, sur votre lieu de travail ou à la sortie de l'école.
+                    <br><span class="text-red-400 font-medium">Lens · Liévin · Loos-en-Gohelle · Angres · Souchez · Aix-Noulette</span>
+                </p>
+
+                <div class="animate-fade-up delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo%20%F0%9F%9A%B4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full sm:w-auto" aria-label="Contacter Sébastien sur WhatsApp">
+                        <svg class="w-6 h-6 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886c0-3.688 2.318-6.922 5.794-7.716 3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222zm1.895-4.638c-.273-.243-.57-.562-.895-.895-.34-.35-.69-.73-.895-1.018-.19-.272-.368-.52-.52-.775-.15-.25-.273-.373-.273-.373s.149-.405.347-.57c.198-.164.248-.298.298-.497.05-.199-.025-.372-.074-.522-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347-.445-.222-.836-.344-1.093-.466-.258-.122-.496-.198-.748-.198-.252 0-.504.076-.756.223-.3.173-.633.643-.916 1.382-.19.51-.24.854-.24 1.042 0 .198.05.372.1.52.05.15.1.299.1.448 0 .149-.05.298-.149.447-.098.149-.272.248-.52.397-.248.149-.743.173-1.36.05-.67-.124-1.36-.422-1.637-.57-.273-.149-.372-.124-.497 0-.124.124-.273.322-.397.57-.124.248-.198.57-.198.822 0 .273.074.52.198.743.124.222.323.543.52.895.198.372.347.57.57.719.222.148.445.198.669.198.199 0 .397-.025.57-.1.173-.074.472-.347.669-.72.198-.373.247-.72.247-1.018 0-.298-.049-.544-.198-.82-.149-.273-.372-.52-.57-.743z"/></svg>
+                        <span>Écrire sur WhatsApp</span>
+                        <span class="hidden sm:inline text-sm opacity-80">Réponse < 10 min</span>
+                    </a>
+                    <a href="tel:+33681035117" class="btn-primary w-full sm:w-auto" aria-label="Appeler directement le 06.81.03.51.17">
+                        <svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span>06.81.03.51.17</span>
+                    </a>
+                </div>
+
+                <div class="animate-fade-up delay-4 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm text-white/50 border-t border-white/10 pt-8">
+                    <div class="flex items-center gap-1.5"><svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Déplacement offert ≤ 10 km</div>
+                    <div class="flex items-center gap-1.5"><svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Pièces d'origine constructeur</div>
+                    <div class="flex items-center gap-1.5"><svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Facture &amp; garantie 3 mois</div>
+                    <div class="flex items-center gap-1.5"><svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Micro-entreprise assurée RC Pro</div>
+                </div>
+
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+                    <svg class="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </div>
+            </div>
+        </main>
     </header>
 
-    <section class="max-w-4xl mx-auto my-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-3xl mb-2">🚴‍♂️</div>
-            <h3 class="font-bold text-lg">Tous vélos & VAE</h3>
-            <p class="text-gray-500 text-sm mt-1">Du vélo enfant au diagnostic électrique de votre VAE.</p>
+    <!-- STICKY CTA MOBILE -->
+    <div class="sticky-cta-bar" role="complementary" aria-label="Actions rapides">
+        <div class="sticky-cta-inner">
+            <div class="grid grid-cols-2 gap-2">
+                <a href="tel:+33681035117" class="btn-ghost w-full justify-center py-3 text-base" aria-label="Appeler">
+                    <svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    Appeler
+                </a>
+                <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo%20%F0%9F%9A%B4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full justify-center py-3 text-base" aria-label="WhatsApp">
+                    <svg class="w-6 h-6 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886c0-3.688 2.318-6.922 5.794-7.716 3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222zm1.895-4.638c-.273-.243-.57-.562-.895-.895-.34-.35-.69-.73-.895-1.018-.19-.272-.368-.52-.52-.775-.15-.25-.273-.373-.273-.373s.149-.405.347-.57c.198-.164.248-.298.298-.497.05-.199-.025-.372-.074-.522-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347-.445-.222-.836-.344-1.093-.466-.258-.122-.496-.198-.748-.198-.252 0-.504.076-.756.223-.3.173-.633.643-.916 1.382-.19.51-.24.854-.24 1.042 0 .198.05.372.1.52.05.15.1.299.1.448 0 .149-.05.298-.149.447-.098.149-.272.248-.52.397-.248.149-.743.173-1.36.05-.67-.124-1.36-.422-1.637-.57-.273-.149-.372-.124-.497 0-.124.124-.273.322-.397.57-.124.248-.198.57-.198.822 0 .273.074.52.198.743.124.222.323.543.52.895.198.372.347.57.57.719.222.148.445.198.669.198.199 0 .397-.025.57-.1.173-.074.472-.347.669-.72.198-.373.247-.72.247-1.018 0-.298-.049-.544-.198-.82-.149-.273-.372-.52-.57-.743z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-3xl mb-2">🏡</div>
-            <h3 class="font-bold text-lg">À Domicile</h3>
-            <p class="text-gray-500 text-sm mt-1">10 km de déplacement inclus autour de Liévin.</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-3xl mb-2">⚡</div>
-            <h3 class="font-bold text-lg">Prise de RDV Rapide</h3>
-            <p class="text-gray-500 text-sm mt-1">Remplissez le formulaire, je vous rappelle sous 24h.</p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section id="comment-ca-marche" class="py-20 sm:py-28 lg:py-32 relative" aria-labelledby="how-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    Comment ça marche
+                </div>
+                <h2 id="how-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">3 étapes, zéro déplacement pour vous</h2>
+                <p class="text-lg text-white/60">Simple, transparent, sans surprise.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="glass p-8 rounded-2xl relative text-center group animate-fade-up" style="animation-delay: 100ms;" itemprop="hasOfferCatalog" itemtype="https://schema.org/OfferCatalog" itemscope>
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%); box-shadow: var(--shadow-glow-red);" aria-hidden="true">1</div>
+                    <div class="pt-12">
+                        <div class="w-16 h-16 mx-auto mb-5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3);" aria-hidden="true">
+                            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Vous me contactez</h3>
+                        <p class="text-white/60 leading-relaxed">Téléphone, WhatsApp ou formulaire. 3 questions, votre adresse, je vous donne un créneau et un prix fixe immédiat.</p>
+                    </div>
+                </article>
+
+                <article class="glass p-8 rounded-2xl relative text-center group animate-fade-up" style="animation-delay: 200ms;" itemprop="hasOfferCatalog" itemtype="https://schema.org/OfferCatalog" itemscope>
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%); box-shadow: var(--shadow-glow-red);" aria-hidden="true">2</div>
+                    <div class="pt-12">
+                        <div class="w-16 h-16 mx-auto mb-5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3);" aria-hidden="true">
+                            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">J'arrive chez vous</h3>
+                        <p class="text-white/60 leading-relaxed">Domicile, travail, école, parking d'entreprise — je m'adapte à votre emploi du temps. Atelier complet dans le coffre.</p>
+                    </div>
+                </article>
+
+                <article class="glass p-8 rounded-2xl relative text-center group animate-fade-up" style="animation-delay: 300ms;" itemprop="hasOfferCatalog" itemtype="https://schema.org/OfferCatalog" itemscope>
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-green) 0%, #16a34a 100%); box-shadow: 0 0 40px rgba(34,197,94,.15);" aria-hidden="true">3</div>
+                    <div class="pt-12">
+                        <div class="w-16 h-16 mx-auto mb-5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300" style="background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3);" aria-hidden="true">
+                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Vélo prêt, vous payez</h3>
+                        <p class="text-white/60 leading-relaxed">Réparation sur place, test ensemble, facture par email. Espèces, carte, virement, mobile. Garantie 3 mois main d'œuvre.</p>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
-    <main class="max-w-md mx-auto my-12 px-4">
-        <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-            <h2 class="text-2xl font-bold text-center text-gray-900 mb-2">Demande de rappel rapide</h2>
-            <p class="text-sm text-center text-gray-500 mb-6">Pas de gros formulaire, juste l'essentiel pour fixer un rendez-vous.</p>
-            
-           <form action="https://formspree.io/f/mqakebwd" method="POST" class="space-y-4">
-                
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom / Prénom</label>
-                    <input type="text" name="name" id="name" required placeholder="Ex: Marie Lucas" 
-                           class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+    <!-- TRUST SIGNALS -->
+    <section class="py-16 sm:py-20 lg:py-24" style="background: linear-gradient(180deg, transparent 0%, rgba(220,38,38,.03) 50%, transparent 100%);" aria-labelledby="trust-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-12">
+                <h2 id="trust-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Pourquoi me faire confiance</h2>
+                <p class="text-lg text-white/60">Pas de promesses vides. Des faits vérifiables.</p>
+            </header>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="trust-badge" itemprop="knowsAbout" itemtype="https://schema.org/ProfessionalService" itemscope>
+                    <svg class="w-6 h-6 text-red-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span itemprop="name"><strong>Certifié</strong> CQP Technicien Cycles</span>
                 </div>
-
-                <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
-                    <input type="tel" name="phone" id="phone" required placeholder="Ex: 06 12 13 14 15" 
-                           class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-amber-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 2c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2-2-.895 2-2 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2zM5 19a2 2 0 01-2-2v-2a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2H5z"/></svg>
+                    <span><strong>Pièces</strong> d'origine constructeur</span>
                 </div>
-
-                <div>
-                    <label for="bike-type" class="block text-sm font-medium text-gray-700 mb-1">Type de vélo</label>
-                    <select name="bike-type" id="bike-type" required 
-                            class="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <option value="" disabled selected>Sélectionnez votre type de vélo</option>
-                        <option value="VAE">⚡ VAE (Vélo Électrique)</option>
-                        <option value="VTT">🚵‍♂️ VTT</option>
-                        <option value="Route">🚴‍♂️ Vélo de Route</option>
-                        <option value="Ville">🏙️ Vélo de Ville / Loisir</option>
-                        <option value="Enfant">👧 Vélo Enfant</option>
-                    </select>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-green-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span><strong>Garantie</strong> 3 mois main d'œuvre</span>
                 </div>
-
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Quel est le problème ? <span class="text-gray-400 font-normal">(Optionnel)</span></label>
-                    <textarea name="message" id="message" rows="3" placeholder="Ex: Crevaison, révision annuelle, chaîne cassée..." 
-                              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-blue-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    <span><strong>Déplacement</strong> offert ≤ 10 km</span>
                 </div>
-
-                <button type="submit" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 transform active:scale-95">
-                    🚀 Me faire rappeler
-                </button>
-            </form>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-purple-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+                    <span><strong>VAE</strong> Bosch, Shimano, Yamaha, Bafang</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-orange-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L18 21l-6.857-2.286L3 12l5.714-2.143L6 3z"/></svg>
+                    <span><strong>Cargo</strong> Douze, Tern, Yuba, R&amp;M</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-cyan-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <span><strong>Assuré</strong> RC Pro professionnelle</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-pink-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span><strong>Facture</strong> détaillée par email</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="w-6 h-6 text-lime-500 flex-shrink-0 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <span><strong>Paiement</strong> espèces, carte, virement, mobile</span>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="text-center py-8 text-xs text-gray-400 bg-gray-900 text-gray-300 mt-20">
-        <p class="font-semibold text-sm mb-1">Atelier Séb Mobile</p>
-        <p>Sébastien DELVALLET — Micro-entrepreneur</p>
-        <p class="mt-2">📞 06.81.03.51.17 | ✉️ lateliersebmobile@gmail.com</p>
-        <p class="mt-6 text-gray-500">&copy; 2026 Atelier Séb Mobile. Tous droits réservés.</p>
-    </footer>
+    <!-- PRESTATIONS -->
+    <section id="prestations" class="py-20 sm:py-28 lg:py-32" aria-labelledby="prestations-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Mes prestations
+                </div>
+                <h2 id="prestations-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Tout pour votre vélo, sur place</h2>
+                <p class="text-lg text-white/60">3 forfaits tout inclus + options à la carte. Vous choisissez, j'interviens.</p>
+            </header>
 
-</body>
-</html>
+            <!-- FORFAITS PRINCIPAUX -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-center mb-10">Les 3 forfaits tout compris</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- FORFAIT SÉCURITÉ -->
+                    <article class="service-card featured" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-forfait">FORFAIT</span>
+                        <div class="service-icon" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" itemprop="name">Forfait Sécurité</h3>
+                        <p class="text-white/60 text-sm mb-5" itemprop="description">L'essentiel pour rouler serein. Idéal avant une sortie ou pour un vélo peu utilisé.</p>
+                        <ul class="service-features" itemprop="description">
+                            <li>Contrôle 25 points de sécurité</li>
+                            <li>Serrages au couple (potence, selle, roues)</li>
+                            <li>Réglage complet freins (patins ou disques)</li>
+                            <li>Réglage dérailleurs avant &amp; arrière</li>
+                            <li>Dévoilage roues (latéral &amp; radial)</li>
+                            <li>Lubrification chaîne + graissage câbles</li>
+                            <li>Test route final</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="amount">35</span><span class="unit">€</span>
+                        </div>
+                        <a href="#contact" class="btn-primary service-cta" data-service="Forfait Sécurité - 35€">Sélectionner ce forfait</a>
+                    </article>
+
+                    <!-- RÉVISION STANDARD -->
+                    <article class="service-card" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-forfait">FORFAIT</span>
+                        <div class="service-icon" style="background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" itemprop="name">Révision Standard</h3>
+                        <p class="text-white/60 text-sm mb-5" itemprop="description">Le forfait complet pour vélo mécanique. Tout est réglé, lubrifié, prêt à rouler.</p>
+                        <ul class="service-features" itemprop="description">
+                            <li>Tout le Forfait Sécurité inclus</li>
+                            <li>Graissage complet câbles &amp; gaines</li>
+                            <li>Contrôle usure chaîne (outil calibré)</li>
+                            <li>Vérification serrage pédalier / boîtier</li>
+                            <li>Nettoyage transmission complet</li>
+                            <li>Essai prolongé + ajustements fins</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="amount">55</span><span class="unit">€</span>
+                        </div>
+                        <a href="#contact" class="btn-secondary service-cta" data-service="Révision Standard - 55€">Sélectionner ce forfait</a>
+                    </article>
+
+                    <!-- RÉVISION VAE -->
+                    <article class="service-card featured glass-amber" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-vae">FORFAIT VAE</span>
+                        <div class="service-icon" style="background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" itemprop="name">Révision Complète VAE</h3>
+                        <p class="text-white/60 text-sm mb-5" itemprop="description">Le forfait expert pour votre assistance électrique. Diagnostic complet + révision mécanique.</p>
+                        <ul class="service-features" itemprop="description">
+                            <li>Tout la Révision Standard incluse</li>
+                            <li>Diagnostic électronique (Bosch/Shimano/Yamaha/Bafang)</li>
+                            <li>Mise à jour firmware si dispo</li>
+                            <li>Test batterie &amp; autonomie réelle</li>
+                            <li>Contrôle connecteurs &amp; capteur couple</li>
+                            <li>Rapport d'état batterie (si accessible)</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="amount">75</span><span class="unit">€</span>
+                        </div>
+                        <a href="#contact" class="btn-whatsapp service-cta" data-service="Révision VAE - 75€">Sélectionner ce forfait</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- OPTIONS À LA CARTE -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-center mb-10">Options à la carte</h3>
+                <p class="text-center text-white/60 mb-8 max-w-2xl mx-auto">Besoin d'une intervention précise ? Ces options s'ajoutent à tout forfait ou s'commandent seules.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <article class="service-card text-center" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-option">OPTION</span>
+                        <div class="service-icon mx-auto" style="background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L18 21l-6.857-2.286L3 12l5.714-2.143L6 3z"/></svg>
+                        </div>
+                        <h4 class="font-semibold mb-2" itemprop="name">Crevaison</h4>
+                        <p class="text-white/60 text-xs mb-3" itemprop="description">Par roue — chambre à air + contrôle pneu</p>
+                        <div class="service-price justify-center">
+                            <span class="amount price-green">15</span><span class="unit">€</span>
+                        </div>
+                    </article>
+
+                    <article class="service-card text-center" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-option">OPTION</span>
+                        <div class="service-icon mx-auto" style="background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </div>
+                        <h4 class="font-semibold mb-2" itemprop="name">Purge freins</h4>
+                        <p class="text-white/60 text-xs mb-3" itemprop="description">DOT ou minéral — alignement étriers</p>
+                        <div class="service-price justify-center">
+                            <span class="amount" style="color: #93c5fd;">25</span><span class="unit">€</span>
+                        </div>
+                    </article>
+
+                    <article class="service-card text-center" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-option">OPTION</span>
+                        <div class="service-icon mx-auto" style="background: rgba(168,85,247,.15); border: 1px solid rgba(168,85,247,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2zM5 19a2 2 0 01-2-2v-2a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2H5z"/></svg>
+                        </div>
+                        <h4 class="font-semibold mb-2" itemprop="name">Montage vélo neuf</h4>
+                        <p class="text-white/60 text-xs mb-3" itemprop="description">Déballage, montage, réglages complets, test 5 km</p>
+                        <div class="service-price justify-center">
+                            <span class="amount" style="color: #d8b4fe;">45</span><span class="unit">€</span>
+                        </div>
+                    </article>
+
+                    <article class="service-card text-center" itemscope itemtype="https://schema.org/Service">
+                        <span class="service-badge badge-option">OPTION</span>
+                        <div class="service-icon mx-auto" style="background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.3);" aria-hidden="true">
+                            <svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                        </div>
+                        <h4 class="font-semibold mb-2" itemprop="name">Urgence -24h</h4>
+                        <p class="text-white/60 text-xs mb-3" itemprop="description">Intervention prioritaire selon dispo</p>
+                        <div class="service-price justify-center">
+                            <span class="amount" style="color: #fdba74;">+15</span><span class="unit">€</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- CE QUI EST TOUJOURS INCLUS -->
+            <div class="glass p-6 sm:p-8 rounded-2xl animate-fade-up">
+                <h3 class="text-xl font-bold text-center mb-6">Ce qui est <strong class="text-red-400">toujours inclus</strong>, quel que soit le forfait</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div class="flex items-center gap-3 p-3 rounded-xl" style="background: rgba(255,255,255,.02); border: 1px solid var(--border-subtle);">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0 self-center" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span class="text-white/80">Déplacement ≤ 10 km</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-xl" style="background: rgba(255,255,255,.02); border: 1px solid var(--border-subtle);">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0 self-center" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span class="text-white/80">Devis gratuit &amp; sans engagement</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-xl" style="background: rgba(255,255,255,.02); border: 1px solid var(--border-subtle);">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0 self-center" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span class="text-white/80">Pièces validées avant commande</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-xl" style="background: rgba(255,255,255,.02); border: 1px solid var(--border-subtle);">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0 self-center" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span class="text-white/80">Facture détaillée par email</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARIFS - TABLEAU COMPARATIF CENTRÉ -->
+    <section id="tarifs" class="py-20 sm:py-28 lg:py-32" style="background: linear-gradient(180deg, transparent 0%, rgba(245,158,11,.03) 50%, transparent 100%);" aria-labelledby="tarifs-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3); color: #fcd34d;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 2c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2zM5 19a2 2 0 01-2-2v-2a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2H5z"/></svg>
+                    Tarifs détaillés
+                </div>
+                <h2 id="tarifs-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Main d'œuvre uniquement — Pièces au réel sur devis</h2>
+                <p class="text-lg text-white/60">Comparaison claire. Pas de frais cachés. Vous validez avant intervention.</p>
+            </header>
+
+            <!-- TABLEAU CENTRÉ AVEC MAX-WIDTH -->
+            <div class="max-w-5xl mx-auto overflow-x-auto">
+                <table class="pricing-table" role="table">
+                    <thead>
+                        <tr>
+                            <th>Prestation</th>
+                            <th>Sécurité<br><span class="text-xs font-normal text-white/40">35 €</span></th>
+                            <th>Standard<br><span class="text-xs font-normal text-white/40">55 €</span></th>
+                            <th class="text-amber-400">VAE Complet<br><span class="text-xs font-normal text-white/40">75 €</span></th>
+                            <th>À la carte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- COMMUN À TOUS LES FORFAITS -->
+                        <tr class="recommended">
+                            <td class="font-semibold text-white">Contrôle 25 points sécurité</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Serrages au couple</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Réglage freins complet</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Réglage dérailleurs (AV/AR)</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Dévoilage roues</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Lubrification chaîne + câbles</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+
+                        <!-- SPÉCIFIQUES VAE -->
+                        <tr class="vae-row">
+                            <td class="font-semibold text-amber-400">Diagnostic électronique VAE</td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr class="vae-row">
+                            <td class="font-semibold text-amber-400">Mise à jour firmware</td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+                        <tr class="vae-row">
+                            <td class="font-semibold text-amber-400">Test batterie &amp; autonomie</td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                        </tr>
+
+                        <!-- OPTIONS À LA CARTE -->
+                        <tr>
+                            <td class="font-semibold text-white">Crevaison (par roue)</td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="text-center"><span class="price-cell price-red">15 €</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Purge freins hydrauliques</td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="cross-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></td>
+                            <td class="text-center"><span class="price-cell" style="color: #93c5fd; background: rgba(59,130,246,.15); border-color: rgba(59,130,246,.3);">25 €</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Montage vélo neuf</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="text-center"><span class="price-cell" style="color: #d8b4fe; background: rgba(168,85,247,.15); border-color: rgba(168,85,247,.3);">45 €</span></td>
+                        </tr>
+                        <tr class="recommended">
+                            <td class="font-semibold text-white">Déplacement (≤ 10 km)</td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="check-cell"><svg class="check-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></td>
+                            <td class="text-center"><span class="price-cell price-included">Inclus</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-sm text-white/40 mt-8">Tous prix en € TTC · Micro-entreprise non assujettie TVA (art. 293B CGI) · Paiement après intervention · Au-delà 10 km : 1 €/km A/R</p>
+        </div>
+    </section>
+
+    <!-- ZONE D'INTERVENTION -->
+    <section id="zone" class="py-20 sm:py-28 lg:py-32" aria-labelledby="zone-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3); color: #93c5fd;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+                    Zone d'intervention
+                </div>
+                <h2 id="zone-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">J'interviens près de chez vous</h2>
+                <p class="text-lg text-white/60">Rayon 25 km autour de Liévin — Déplacement offert jusqu'à 10 km</p>
+            </header>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <button class="zone-card primary" data-zone="Liévin" aria-pressed="true" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏙️</div>
+                    <p class="font-bold" itemprop="name">Liévin</p>
+                    <p class="text-white/50 text-sm">Point de départ (62800)</p>
+                </button>
+                <button class="zone-card" data-zone="Lens" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏙️</div>
+                    <p class="font-bold" itemprop="name">Lens</p>
+                    <p class="text-white/50 text-sm">~3 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Loos-en-Gohelle" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏙️</div>
+                    <p class="font-bold" itemprop="name">Loos-en-Gohelle</p>
+                    <p class="text-white/50 text-sm">~4 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Angres" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏙️</div>
+                    <p class="font-bold" itemprop="name">Angres</p>
+                    <p class="text-white/50 text-sm">~5 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Souchez" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏘️</div>
+                    <p class="font-bold" itemprop="name">Souchez</p>
+                    <p class="text-white/50 text-sm">~6 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Aix-Noulette" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏘️</div>
+                    <p class="font-bold" itemprop="name">Aix-Noulette</p>
+                    <p class="text-white/50 text-sm">~7 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Vendin-le-Vieil" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏘️</div>
+                    <p class="font-bold" itemprop="name">Vendin-le-Vieil</p>
+                    <p class="text-white/50 text-sm">~8 km · Inclus</p>
+                </button>
+                <button class="zone-card" data-zone="Éleu-dit-Leauwette" itemscope itemtype="https://schema.org/City">
+                    <div class="text-3xl mb-2" aria-hidden="true">🏘️</div>
+                    <p class="font-bold" itemprop="name">Éleu-dit-Leauwette</p>
+                    <p class="text-white/50 text-sm">~9 km · Inclus</p>
+                </button>
+            </div>
+
+            <p class="text-center text-sm text-white/40 mt-10">Votre commune n'est pas listée ? <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27habite%20%C3%A0%20[VILLE]%2C%20est-ce%20que%20vous%20venez%20%3F" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">Demandez-moi sur WhatsApp</a></p>
+        </div>
+    </section>
+
+    <!-- CONTACT / FORMULAIRE -->
+    <section id="contact" class="py-20 sm:py-28 lg:py-32" style="background: linear-gradient(180deg, transparent 0%, rgba(34,197,94,.03) 50%, transparent 100%);" aria-labelledby="contact-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3); color: #86efac;">
+                    <svg class="w-4 h-4" fill="none" stroke="
