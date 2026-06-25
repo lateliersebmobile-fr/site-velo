@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Séb Mobile — Réparation de vélos & VAE à domicile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
+    <header class="bg-gradient-to-r divide-y from-blue-600 to-blue-800 text-white py-12 px-4 text-center shadow-lg">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-4xl">🔧</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2">Atelier Séb Mobile</h1>
+            <p class="text-lg md:text-xl font-light mt-3 opacity-90">
+                Réparation & entretien de vélos et VAE directement chez vous.
+            </p>
+            <div class="mt-4 inline-block bg-blue-500 text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                📍 Secteur Lens - Liévin (62)
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto my-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-3xl mb-2">🚴‍♂️</div>
+            <h3 class="font-bold text-lg">Tous vélos & VAE</h3>
+            <p class="text-gray-500 text-sm mt-1">Du vélo enfant au diagnostic électrique de votre VAE.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-3xl mb-2">🏡</div>
+            <h3 class="font-bold text-lg">À Domicile</h3>
+            <p class="text-gray-500 text-sm mt-1">10 km de déplacement inclus autour de Liévin.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-3xl mb-2">⚡</div>
+            <h3 class="font-bold text-lg">Prise de RDV Rapide</h3>
+            <p class="text-gray-500 text-sm mt-1">Remplissez le formulaire, je vous rappelle sous 24h.</p>
+        </div>
+    </section>
+
+    <main class="max-w-md mx-auto my-12 px-4">
+        <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+            <h2 class="text-2xl font-bold text-center text-gray-900 mb-2">Demande de rappel rapide</h2>
+            <p class="text-sm text-center text-gray-500 mb-6">Pas de gros formulaire, juste l'essentiel pour fixer un rendez-vous.</p>
+            
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+                
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom / Prénom</label>
+                    <input type="text" name="name" id="name" required placeholder="Ex: Marie Lucas" 
+                           class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
+                    <input type="tel" name="phone" id="phone" required placeholder="Ex: 06 12 13 14 15" 
+                           class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+
+                <div>
+                    <label for="bike-type" class="block text-sm font-medium text-gray-700 mb-1">Type de vélo</label>
+                    <select name="bike-type" id="bike-type" required 
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <option value="" disabled selected>Sélectionnez votre type de vélo</option>
+                        <option value="VAE">⚡ VAE (Vélo Électrique)</option>
+                        <option value="VTT">🚵‍♂️ VTT</option>
+                        <option value="Route">🚴‍♂️ Vélo de Route</option>
+                        <option value="Ville">🏙️ Vélo de Ville / Loisir</option>
+                        <option value="Enfant">👧 Vélo Enfant</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Quel est le problème ? <span class="text-gray-400 font-normal">(Optionnel)</span></label>
+                    <textarea name="message" id="message" rows="3" placeholder="Ex: Crevaison, révision annuelle, chaîne cassée..." 
+                              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 transform active:scale-95">
+                    🚀 Me faire rappeler
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="text-center py-8 text-xs text-gray-400 bg-gray-900 text-gray-300 mt-20">
+        <p class="font-semibold text-sm mb-1">Atelier Séb Mobile</p>
+        <p>Sébastien DELVALLET — Micro-entrepreneur</p>
+        <p class="mt-2">📞 06.81.03.51.17 | ✉️ lateliersebmobile@gmail.com</p>
+        <p class="mt-6 text-gray-500">&copy; 2026 Atelier Séb Mobile. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
