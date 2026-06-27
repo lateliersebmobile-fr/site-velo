@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Réparation vélo & VAE à domicile Lens, Liévin, Loos-en-Gohelle, Angres. Intervention rapide, devis gratuit, pièces d'origine. Appelez le 06.81.03.51.17.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="canonical" href="https://ateliersebmobile.fr/">
+    <title>Atelier Séb Mobile — Réparation vélo & VAE à domicile | Lens · Liévin · Bassin Minier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { red: '#dc2626', amber: '#f59e0b', green: '#22c55e' },
+                        surface: { deep: '#0a0a0a', base: '#111111', elevated: '#1a1a1a', card: '#1e1e1e' }
+                    }
+                }
+            }
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-base: #111111;
+            --bg-elevated: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --border-subtle: #2a2a2a;
+            --border-accent: #3d1a1a;
+            --text-primary: #fafafa;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --brand-red: #dc2626;
+            --brand-red-glow: rgba(220,38,38,0.8);
+            --brand-amber: #f59e0b;
+            --brand-green: #22c55e;
+            --shadow-soft: 0 4px 24px rgba(0,0,0,0.4);
+            --shadow-glow-red: 0 0 40px rgba(220,38,38,0.15);
+            --shadow-glow-amber: 0 0 40px rgba(245,158,11,0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 { font-family: 'Syne', 'Space Grotesk', sans-serif; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .bg-ambient {
+            position: fixed; inset: 0; z-index: -2;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(220,38,38,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(245,158,11,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 30% at 0% 60%, rgba(34,197,94,0.03) 0%, transparent 50%),
+                var(--bg-deep);
+        }
+        .bg-ambient::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.025; pointer-events: none;
+        }
+
+        #particles-canvas {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        }
+
+        .hero-section {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .hero-bg-image {
+            position: absolute; inset: 0; z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center 40%;
+        }
+        .hero-bg-image::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(10,10,10,0.96) 0%, rgba(220,38,38,0.18) 40%, rgba(10,10,10,0.98) 100%);
+        }
+        .hero-bg-image::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 60%, var(--bg-deep) 100%);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(30,30,30,0.82) 0%, rgba(26,26,26,0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-subtle);
+            border-top-color: rgba(255,255,255,0.05);
+            border-left-color: rgba(255,255,255,0.03);
+            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.02);
+        }
+        .glass-strong {
+            background: linear-gradient(135deg, rgba(30,30,30,0.92) 0%, rgba(22,22,22,0.98) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid var(--border-accent);
+            box-shadow: var(--shadow-soft), var(--shadow-glow-red), inset 0 1px 0 rgba(220,38,38,0.05);
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; border-radius: 0.75rem;
+            font-weight: 700; font-size: 1rem; color: white;
+            text-decoration: none; border: none; cursor: pointer;
+            background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%);
+            box-shadow: 0 4px 20px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(220,38,38,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .btn-primary:active { transform: translateY(0) scale(0.98); }
+        .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--brand-red-glow), 0 8px 32px rgba(220,38,38,0.4); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; border-radius: 0.75rem;
+            font-weight: 700; font-size: 1rem; color: white;
+            text-decoration: none; cursor: pointer;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-color: rgba(255,255,255,0.2); transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; border-radius: 0.75rem;
+            font-weight: 700; font-size: 1rem; color: white;
+            text-decoration: none; border: none; cursor: pointer;
+            background: linear-gradient(135deg, var(--brand-green) 0%, #16a34a 100%);
+            box-shadow: 0 4px 20px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px); animation: none;
+            box-shadow: 0 8px 32px rgba(34,197,94,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(34,197,94,0.3), 0 0 0 0 rgba(34,197,94,0.4); }
+            50% { box-shadow: 0 4px 20px rgba(34,197,94,0.4), 0 0 0 12px rgba(34,197,94,0); }
+        }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.5rem 1rem; border-radius: 0.5rem;
+            font-weight: 500; font-size: 0.875rem; color: rgba(255,255,255,0.7);
+            text-decoration: none; cursor: pointer;
+            background: transparent; border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+
+        .field { position: relative; }
+        .field-input {
+            width: 100%; padding: 0.875rem 1rem; border-radius: 0.75rem;
+            color: white; font-size: 1rem; font-family: inherit;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+        .field-input::placeholder { color: transparent; }
+        .field-input:focus {
+            outline: none; border-color: var(--brand-red);
+            box-shadow: 0 0 0 3px var(--brand-red-glow);
+            background: rgba(255,255,255,0.05);
+        }
+        .field-input.has-error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.2); }
+        .field-label {
+            position: absolute; left: 1rem; top: 0.875rem;
+            font-size: 1rem; color: rgba(255,255,255,0.4);
+            pointer-events: none; transition: all 0.2s ease;
+            transform-origin: left top;
+        }
+        .field-input:focus + .field-label,
+        .field-input:not(:placeholder-shown) + .field-label {
+            transform: translateY(-1.65rem) scale(0.8);
+            color: var(--brand-red);
+        }
+        .field-error {
+            margin-top: 0.375rem; font-size: 0.875rem; color: #f87171;
+            display: flex; align-items: center; gap: 0.375rem;
+        }
+        .field-error::before {
+            content: ""; width: 5px; height: 5px; background: #ef4444;
+            border-radius: 50%; flex-shrink: 0;
+        }
+        .field-select {
+            appearance: none; cursor: pointer; padding-right: 3rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;
+        }
+
+        .service-card {
+            position: relative; overflow: hidden; border-radius: 1rem; padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-amber));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(220,38,38,0.3);
+            box-shadow: var(--shadow-soft), var(--shadow-glow-red), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+        .service-card.featured { border-color: var(--brand-red); }
+        .service-card.featured::before { opacity: 1; }
+
+        .service-icon-wrap {
+            width: 3.5rem; height: 3.5rem; border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1rem; transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon-wrap { transform: scale(1.08) rotate(-2deg); }
+
+        .service-features li {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.875rem; color: rgba(255,255,255,0.6);
+        }
+        .service-features li::before {
+            content: ""; width: 5px; height: 5px; border-radius: 50%;
+            background: var(--brand-red); flex-shrink: 0;
+        }
+
+        .pricing-table { width: 100%; border-collapse: collapse; }
+        .pricing-table th {
+            padding: 0.75rem 1rem; text-align: left;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; color: rgba(255,255,255,0.4);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .pricing-table td {
+            padding: 1rem; font-size: 0.875rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .pricing-table tbody tr { transition: background 0.2s; }
+        .pricing-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+        .pricing-table tbody tr.recommended {
+            background: linear-gradient(135deg, rgba(220,38,38,0.05) 0%, rgba(245,158,11,0.03) 100%);
+            border-left: 3px solid var(--brand-red);
+        }
+        .pricing-table tbody tr.vae-row {
+            background: linear-gradient(135deg, rgba(245,158,11,0.05) 0%, rgba(220,38,38,0.03) 100%);
+            border-left: 3px solid var(--brand-amber);
+        }
+
+        .price-tag {
+            display: inline-flex; align-items: baseline; gap: 0.25rem;
+            padding: 0.25rem 0.75rem; border-radius: 0.5rem;
+            font-weight: 700; font-size: 0.875rem;
+        }
+        .price-tag.red { background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5; }
+        .price-tag.amber { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fcd34d; }
+        .price-tag.green { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; }
+        .price-tag.included { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #a3a3a3; }
+
+        .trust-badge {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.875rem 1rem; border-radius: 0.75rem;
+            font-size: 0.875rem; font-weight: 500;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+        .trust-badge:hover { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.05); }
+
+        .zone-card {
+            padding: 1rem; border-radius: 0.75rem; text-align: center;
+            cursor: default; transition: all 0.3s ease;
+        }
+        .zone-card:hover { border-color: rgba(220,38,38,0.4); transform: scale(1.03); }
+        .zone-card.primary { border-color: var(--brand-red); }
+
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .faq-question {
+            width: 100%; display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem 0; font-size: 1rem; font-weight: 600;
+            color: var(--text-primary); background: none; border: none;
+            cursor: pointer; text-align: left; font-family: inherit;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: #fca5a5; }
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+            padding-bottom: 0;
+        }
+        .faq-answer.open { max-height: 300px; padding-bottom: 1.25rem; }
+        .faq-chevron { transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-chevron.open { transform: rotate(180deg); }
+
+        .sticky-cta-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+            padding: 1rem; display: none;
+            background: linear-gradient(180deg, transparent, var(--bg-deep) 30%);
+        }
+        @media (max-width: 767px) { .sticky-cta-bar { display: block; } }
+        .sticky-cta-inner {
+            max-width: 36rem; margin: 0 auto;
+            border-radius: 1rem; padding: 0.75rem;
+            box-shadow: 0 -4px 32px rgba(0,0,0,0.5);
+            animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .toast-container { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 100; display: flex; flex-direction: column; gap: 0.75rem; }
+        .toast {
+            padding: 0.75rem 1rem; border-radius: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            font-size: 0.875rem; font-weight: 500; max-width: 22rem;
+            animation: toastIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+        }
+        .toast-success { background: rgba(22,163,74,0.95); color: white; border: 1px solid rgba(34,197,94,0.3); }
+        .toast-error { background: rgba(220,38,38,0.95); color: white; border: 1px solid rgba(248,113,113,0.3); }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-anim { animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0; }
+        .hero-d1 { animation-delay: 0.1s; }
+        .hero-d2 { animation-delay: 0.2s; }
+        .hero-d3 { animation-delay: 0.35s; }
+        .hero-d4 { animation-delay: 0.5s; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-amber) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mobile-menu {
+            position: fixed; inset: 0; z-index: 60;
+            background: rgba(10,10,10,0.97); backdrop-filter: blur(20px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-menu a {
+            font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: #fca5a5; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        ::selection { background: rgba(220,38,38,0.3); color: var(--text-primary); }
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible { outline: 2px solid var(--brand-red); outline-offset: 2px; }
+
+        @media (max-width: 768px) {
+            .pricing-table thead { display: none; }
+            .pricing-table tbody tr {
+                display: block; margin-bottom: 0.75rem;
+                border: 1px solid var(--border-subtle); border-radius: 0.75rem; overflow: hidden;
+            }
+            .pricing-table td {
+                display: flex; justify-content: space-between; align-items: center;
+                padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .pricing-table td:last-child { border-bottom: none; }
+            .pricing-table td::before {
+                content: attr(data-label); font-weight: 600; color: var(--text-secondary); margin-right: 1rem;
+            }
+        }
+
+        .counter-value { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="min-h-screen" x-data="page()" x-init="init()">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://ateliersebmobile.fr/#business",
+      "name": "Atelier Séb Mobile",
+      "description": "Service de réparation et d'entretien de vélos et VAE 100% mobile à domicile dans le Bassin Minier.",
+      "url": "https://ateliersebmobile.fr/",
+      "telephone": "+33681035117",
+      "email": "lateliersebmobile@gmail.com",
+      "priceRange": "15-75 €",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer, Mobile Payment",
+      "currenciesAccepted": "EUR",
+      "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 50.421, "longitude": 2.823 }, "geoRadius": "25000" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Liévin", "addressRegion": "Hauts-de-France", "postalCode": "62800", "addressCountry": "FR" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "16:00" }
+      ],
+      "sameAs": ["https://www.facebook.com/ateliersebmobile", "https://wa.me/33681035117"]
+    }
+    </script>
+
+    <div class="bg-ambient" aria-hidden="true"></div>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- MENU MOBILE -->
+    <div class="mobile-menu" :class="{ 'open': mobileMenu }">
+        <button @click="mobileMenu = false" class="absolute top-6 right-6 p-2 text-white/60 hover:text-white" aria-label="Fermer le menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <a href="#prestations" @click="mobileMenu = false">Prestations</a>
+        <a href="#tarifs" @click="mobileMenu = false">Tarifs</a>
+        <a href="#zone" @click="mobileMenu = false">Zone</a>
+        <a href="#faq" @click="mobileMenu = false">FAQ</a>
+        <a href="#contact" @click="mobileMenu = false">Contact</a>
+        <div class="flex gap-4 mt-4">
+            <a href="tel:+33681035117" class="btn-primary text-base px-6 py-3">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                Appeler
+            </a>
+            <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo" target="_blank" rel="noopener noreferrer" class="btn-whatsapp text-base px-6 py-3">WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- HEADER / HERO -->
+    <header class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-bg-image" aria-hidden="true"></div>
+
+        <nav class="absolute top-0 left-0 right-0 z-30 px-4 py-5" aria-label="Navigation principale">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2.5 text-white font-extrabold text-xl tracking-tight" aria-label="Atelier Séb Mobile - Accueil">
+                    <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-4 4h3l-2 4 4-4h-3l2-4z"/></svg>
+                    <span class="hidden sm:block">Atelier Seb Mobile</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="#prestations" class="btn-ghost">Prestations</a>
+                    <a href="#tarifs" class="btn-ghost">Tarifs</a>
+                    <a href="#zone" class="btn-ghost">Zone</a>
+                    <a href="#faq" class="btn-ghost">FAQ</a>
+                    <a href="#contact" class="btn-ghost">Contact</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="tel:+33681035117" class="hidden lg:inline-flex items-center gap-1.5 btn-ghost" aria-label="Appeler le 06.81.03.51.17">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        06.81.03.51.17
+                    </a>
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo" target="_blank" rel="noopener noreferrer" class="btn-whatsapp px-4 py-2 text-sm hidden sm:inline-flex" aria-label="WhatsApp">WhatsApp</a>
+                    <button @click="mobileMenu = true" class="md:hidden p-2 text-white/70 hover:text-white" aria-label="Ouvrir le menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:py-32 lg:py-40 w-full">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="hero-anim hero-d1 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </span>
+                    Disponible cette semaine — Intervention sous 24h
+                </div>
+
+                <h1 id="hero-title" class="hero-anim hero-d2 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6">
+                    Votre velo repare <span class="text-gradient">chez vous</span>, sans lever le petit doigt
+                </h1>
+
+                <p class="hero-anim hero-d3 text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Reparation & entretien <strong class="text-white">velo, VAE, cargo, route</strong> — a domicile, sur votre lieu de travail ou a la sortie de l'ecole.
+                    <br><span class="text-red-400 font-medium">Lens · Lievin · Loos-en-Gohelle · Angres · Souchez · Aix-Noulette</span>
+                </p>
+
+                <div class="hero-anim hero-d4 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo%20%F0%9F%9A%B4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886C3.05 5.198 5.368 1.964 8.844 1.17c3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222z"/></svg>
+                        Ecrire sur WhatsApp
+                        <span class="hidden sm:inline text-sm opacity-80 ml-1">Reponse &lt; 10 min</span>
+                    </a>
+                    <a href="tel:+33681035117" class="btn-primary w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        06.81.03.51.17
+                    </a>
+                </div>
+
+                <div class="hero-anim hero-d4 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm text-white/50 border-t border-white/10 pt-8">
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Deplacement offert
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Pieces d'origine
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Garantie 3 mois
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Assure RC Pro
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce" aria-hidden="true">
+            <svg class="w-6 h-6 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+    </header>
+
+    <!-- BARRE CTA MOBILE -->
+    <div class="sticky-cta-bar" role="complementary" aria-label="Actions rapides">
+        <div class="sticky-cta-inner glass-strong">
+            <div class="grid grid-cols-2 gap-2">
+                <a href="tel:+33681035117" class="btn-secondary py-3 text-base" aria-label="Appeler">
+                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    Appeler
+                </a>
+                <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo" target="_blank" rel="noopener noreferrer" class="btn-whatsapp py-3 text-base" aria-label="WhatsApp">
+                    <svg class="w-5 h-5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886C3.05 5.198 5.368 1.964 8.844 1.17c3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="py-12 sm:py-16 border-y border-white/5" style="background: linear-gradient(180deg, rgba(220,38,38,0.03) 0%, transparent 100%);">
+        <div class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+            <div class="reveal">
+                <div class="text-3xl sm:text-4xl font-extrabold text-gradient counter-value" x-intersect.once="animateCounter($el, 500, 1500)">0</div>
+                <div class="text-sm text-white/50 mt-1">Velos reparés</div>
+            </div>
+            <div class="reveal reveal-d1">
+                <div class="text-3xl sm:text-4xl font-extrabold text-gradient counter-value" x-intersect.once="animateCounter($el, 3, 1500)">0</div>
+                <div class="text-sm text-white/50 mt-1">Années d'experience</div>
+            </div>
+            <div class="reveal reveal-d2 col-span-2 md:col-span-1">
+                <div class="text-3xl sm:text-4xl font-extrabold text-gradient counter-value" x-intersect.once="animateCounter($el, 12, 1500)">0</div>
+                <div class="text-sm text-white/50 mt-1">Communes desservies</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENT CA MARCHE -->
+    <section id="comment-ca-marche" class="py-20 sm:py-28 relative" aria-labelledby="how-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    Comment ca marche
+                </span>
+                <h2 id="how-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">3 etapes, zero deplacement pour vous</h2>
+                <p class="text-lg text-white/60">Simple, transparent, sans surprise.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <article class="glass p-8 rounded-2xl relative text-center reveal">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%); box-shadow: var(--shadow-glow-red);" aria-hidden="true">1</div>
+                    <div class="pt-10">
+                        <div class="service-icon-wrap mx-auto" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3);">
+                            <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Vous me contactez</h3>
+                        <p class="text-white/60 leading-relaxed">Telephone, WhatsApp ou formulaire. 3 questions, votre adresse, je vous donne un creneau et un prix fixe immediat.</p>
+                    </div>
+                </article>
+                <article class="glass p-8 rounded-2xl relative text-center reveal reveal-d1">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-red) 0%, #b91c1c 100%); box-shadow: var(--shadow-glow-red);" aria-hidden="true">2</div>
+                    <div class="pt-10">
+                        <div class="service-icon-wrap mx-auto" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3);">
+                            <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">J'arrive chez vous</h3>
+                        <p class="text-white/60 leading-relaxed">Domicile, travail, ecole, parking d'entreprise — je m'adapte a votre emploi du temps. Atelier complet dans le coffre.</p>
+                    </div>
+                </article>
+                <article class="glass p-8 rounded-2xl relative text-center reveal reveal-d2">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-extrabold text-white" style="background: linear-gradient(135deg, var(--brand-green) 0%, #16a34a 100%); box-shadow: 0 0 40px rgba(34,197,94,0.15);" aria-hidden="true">3</div>
+                    <div class="pt-10">
+                        <div class="service-icon-wrap mx-auto" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);">
+                            <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Velo pret, vous payez</h3>
+                        <p class="text-white/60 leading-relaxed">Reparation sur place, test ensemble, facture par email. Especes, carte, virement, mobile. Garantie 3 mois.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONFIANCE -->
+    <section class="py-16 sm:py-20" style="background: linear-gradient(180deg, transparent 0%, rgba(220,38,38,0.02) 50%, transparent 100%);" aria-labelledby="trust-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <h2 id="trust-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Pourquoi me faire confiance</h2>
+                <p class="text-lg text-white/60">Pas de promesses vides. Des faits verifiables.</p>
+            </header>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="trust-badge reveal"><svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span><strong>Certifie</strong> CQP Technicien Cycles</span></div>
+                <div class="trust-badge reveal reveal-d1"><svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg><span><strong>Pieces</strong> d'origine constructeur</span></div>
+                <div class="trust-badge reveal reveal-d2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span><strong>Garantie</strong> 3 mois main d'oeuvre</span></div>
+                <div class="trust-badge reveal"><svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span><strong>Deplacement</strong> offert &le; 10 km</span></div>
+                <div class="trust-badge reveal reveal-d1"><svg class="w-5 h-5 text-purple-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><span><strong>VAE</strong> Bosch, Shimano, Yamaha, Bafang</span></div>
+                <div class="trust-badge reveal reveal-d2"><svg class="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L18 21l-6.857-2.286L3 12l5.714-2.143L6 3z"/></svg><span><strong>Cargo</strong> Douze, Tern, Yuba, R&amp;M</span></div>
+                <div class="trust-badge reveal"><svg class="w-5 h-5 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span><strong>Assure</strong> RC Pro professionnelle</span></div>
+                <div class="trust-badge reveal reveal-d1"><svg class="w-5 h-5 text-pink-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg><span><strong>Facture</strong> detaillee par email</span></div>
+                <div class="trust-badge reveal reveal-d2"><svg class="w-5 h-5 text-lime-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg><span><strong>Paiement</strong> especes, carte, virement, mobile</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESTATIONS -->
+    <section id="prestations" class="py-20 sm:py-28" aria-labelledby="prestations-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                    Mes prestations
+                </span>
+                <h2 id="prestations-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Tout pour votre velo, sur place</h2>
+                <p class="text-lg text-white/60">3 forfaits tout inclus + options a la carte.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <div class="service-card glass reveal">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">Forfait</span>
+                    <div class="service-icon-wrap" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3);">
+                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Forfait Securite</h3>
+                    <p class="text-white/50 text-sm mb-4">Le minimum vital pour rouler en confiance.</p>
+                    <ul class="service-features space-y-2 mb-6">
+                        <li>Controle des points cles</li>
+                        <li>Serrages cadre, roues, guidon</li>
+                        <li>Reglage freins &amp; deriveurs</li>
+                        <li>Verification roues &amp; pneus</li>
+                        <li>Lubrification chaine</li>
+                    </ul>
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="text-3xl font-extrabold">35</span>
+                        <span class="text-white/50">&euro;</span>
+                    </div>
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20je%20souhaite%20le%20Forfait%20S%C3%A9curit%C3%A9%20%C3%A0%2035%E2%82%AC" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-sm">Reserver ce forfait</a>
+                </div>
+
+                <div class="service-card glass-strong featured reveal reveal-d1">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fcd34d;">Populaire</span>
+                    <div class="service-icon-wrap" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3);">
+                        <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Revision Standard</h3>
+                    <p class="text-white/50 text-sm mb-4">L'entretien complet pour une saison sans souci.</p>
+                    <ul class="service-features space-y-2 mb-6">
+                        <li>Tout le forfait Securite</li>
+                        <li>Devoilage roues</li>
+                        <li>Lubrification complete</li>
+                        <li>Graissage cables &amp; gaines</li>
+                        <li>Controle usure composants</li>
+                    </ul>
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="text-3xl font-extrabold text-amber-400">55</span>
+                        <span class="text-white/50">&euro;</span>
+                    </div>
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20je%20souhaite%20la%20R%C3%A9vision%20Standard%20%C3%A0%2055%E2%82%AC" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-sm" style="background: linear-gradient(135deg, var(--brand-amber) 0%, #d97706 100%); box-shadow: 0 4px 20px rgba(245,158,11,0.3), inset 0 1px 0 rgba(255,255,255,0.1);">Reserver ce forfait</a>
+                </div>
+
+                <div class="service-card glass reveal reveal-d2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac;">VAE</span>
+                    <div class="service-icon-wrap" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);">
+                        <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Revision Complete VAE</h3>
+                    <p class="text-white/50 text-sm mb-4">Standard + diagnostic electrique complet.</p>
+                    <ul class="service-features space-y-2 mb-6">
+                        <li>Tout le forfait Standard</li>
+                        <li>Diagnostic electrique complet</li>
+                        <li>Controle batterie &amp; connectique</li>
+                        <li>Verification firmware moteur</li>
+                        <li>Nettoyage connecteurs</li>
+                    </ul>
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="text-3xl font-extrabold text-green-400">75</span>
+                        <span class="text-white/50">&euro;</span>
+                    </div>
+                    <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20je%20souhaite%20la%20R%C3%A9vision%20Compl%C3%A8te%20VAE%20%C3%A0%2075%E2%82%AC" target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full text-sm">Reserver ce forfait</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARIFS DETAILLES -->
+    <section id="tarifs" class="py-20 sm:py-28" style="background: linear-gradient(180deg, transparent 0%, rgba(220,38,38,0.02) 50%, transparent 100%);" aria-labelledby="tarifs-title">
+        <div class="max-w-5xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fcd34d;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z"/></svg>
+                    Tarifs details
+                </span>
+                <h2 id="tarifs-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Prix fixes, sans surprise</h2>
+                <p class="text-lg text-white/60">Main d'oeuvre uniquement. Les pieces sont en supplement au prix coutant.</p>
+            </header>
+
+            <div class="glass rounded-2xl overflow-hidden reveal" style="overflow-x: auto;">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Prestation</th>
+                            <th>Classique</th>
+                            <th>VAE</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Prestation">Reparation crevaison <span class="text-white/40">(par roue)</span></td>
+                            <td data-label="Classique"><span class="price-tag red">15 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">20 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">25 &euro;</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prestation">Remplacement chaine</td>
+                            <td data-label="Classique"><span class="price-tag red">20 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">25 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">30 &euro;</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prestation">Remplacement patins frein <span class="text-white/40">(par jeu)</span></td>
+                            <td data-label="Classique"><span class="price-tag red">15 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">20 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">20 &euro;</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prestation">Remplacement plaquettes disque <span class="text-white/40">(par jeu)</span></td>
+                            <td data-label="Classique"><span class="price-tag red">20 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">25 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">25 &euro;</span></td>
+                        </tr>
+                        <tr class="recommended">
+                            <td data-label="Prestation"><strong>Forfait Securite</strong></td>
+                            <td data-label="Classique"><span class="price-tag red">35 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">45 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">50 &euro;</span></td>
+                        </tr>
+                        <tr class="recommended">
+                            <td data-label="Prestation"><strong>Revision Standard</strong></td>
+                            <td data-label="Classique"><span class="price-tag red">55 &euro;</span></td>
+                            <td data-label="VAE"><span class="price-tag amber">65 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag amber">75 &euro;</span></td>
+                        </tr>
+                        <tr class="vae-row">
+                            <td data-label="Prestation"><strong>Revision Complete VAE</strong></td>
+                            <td data-label="Classique"><span class="price-tag included">—</span></td>
+                            <td data-label="VAE"><span class="price-tag green">75 &euro;</span></td>
+                            <td data-label="Cargo"><span class="price-tag green">90 &euro;</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prestation">Deplacement <span class="text-white/40">(&le; 10 km)</span></td>
+                            <td data-label="Classique" colspan="3"><span class="price-tag green">Offert</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prestation">Deplacement <span class="text-white/40">(&gt; 10 km)</span></td>
+                            <td data-label="Classique" colspan="3"><span class="price-tag red">1 &euro;/km supplementaire</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-white/40 text-sm mt-6 reveal">Tous les prix sont en euros TTC. Pieces facturees au prix coutant, avec transparence totale avant intervention.</p>
+        </div>
+    </section>
+
+    <!-- ZONE D'INTERVENTION -->
+    <section id="zone" class="py-20 sm:py-28" aria-labelledby="zone-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Zone d'intervention
+                </span>
+                <h2 id="zone-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Je me deplace dans tout le Bassin Minier</h2>
+                <p class="text-lg text-white/60">Deplacement offert dans un rayon de 10 km autour de Lievin. Au-dela, 1 &euro;/km.</p>
+            </header>
+
+            <div class="reveal glass rounded-2xl p-6 sm:p-8 mb-10">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <div class="zone-card glass-strong primary">
+                        <div class="text-lg font-bold mb-1">Lens</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass-strong primary">
+                        <div class="text-lg font-bold mb-1">Lievin</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                        <div class="text-[10px] text-white/30 mt-0.5">Base</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Loos</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Angres</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Souchez</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Aix-Noulette</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Bully-les-Mines</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Vermelles</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Noyelles-sous-Lens</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Sains-en-Gohelle</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Harnes</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                    <div class="zone-card glass">
+                        <div class="text-lg font-bold mb-1">Eleu-dit-Leauwette</div>
+                        <div class="text-xs text-green-400 font-medium">Offert</div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-6 border-t border-white/10 text-center">
+                    <p class="text-white/50 text-sm">Votre commune n'est pas listee ? <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27habite%20%C3%A0%20[ma%20commune]%2C%20intervenez-vous%20chez%20moi%20%3F" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 underline underline-offset-2">Demandez-moi</a> — j'interviens jusqu'a 25 km.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 sm:py-28" style="background: linear-gradient(180deg, transparent 0%, rgba(220,38,38,0.02) 50%, transparent 100%);" aria-labelledby="faq-title">
+        <div class="max-w-3xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Questions frequentes
+                </span>
+                <h2 id="faq-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Vous hesitez encore ?</h2>
+            </header>
+
+            <div class="reveal" x-data="{ openFaq: null }">
+                <div class="faq-item">
+                    <button class="faq-question" @click="openFaq = openFaq === 1 ? null : 1" :aria-expanded="openFaq === 1">
+                        Combien de temps dure une intervention ?
+                        <svg class="faq-chevron w-5 h-5 text-white/40" :class="{ 'open': openFaq === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer text-white/60 text-sm leading-relaxed" :class="{ 'open': openFaq === 1 }">
+                        Une crevaison : 15-20 min. Un forfait Securite : 30-45 min. Une Revision Standard : 1h a 1h30. Une Revision Complete VAE : 1h30 a 2h. Je vous donne une estimation avant de venir.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" @click="openFaq = openFaq === 2 ? null : 2" :aria-expanded="openFaq === 2">
+                        Que se passe-t-il si une piece doit etre commandee ?
+                        <svg class="faq-chevron w-5 h-5 text-white/40" :class="{ 'open': openFaq === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer text-white/60 text-sm leading-relaxed" :class="{ 'open': openFaq === 2 }">
+                        Si la piece n'est pas en stock dans mon coffre, je vous informe du prix et du delai avant de commander. Des que je l'ai, je reviens chez vous pour l'installer. Aucun frais supplementaire de deplacement pour le retour.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" @click="openFaq = openFaq === 3 ? null : 3" :aria-expanded="openFaq === 3">
+                        Intervenez-vous le week-end ?
+                        <svg class="faq-chevron w-5 h-5 text-white/40" :class="{ 'open': openFaq === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer text-white/60 text-sm leading-relaxed" :class="{ 'open': openFaq === 3 }">
+                        Oui, le samedi de 9h a 16h. Le dimanche en cas d'urgence (surcharge tarifaire de 10€). En semaine, je suis disponible de 8h a 19h avec une grande flexibilite d'horaires.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" @click="openFaq = openFaq === 4 ? null : 4" :aria-expanded="openFaq === 4">
+                        Mon velo est tres vieux, ca vaut le coup ?
+                        <svg class="faq-chevron w-5 h-5 text-white/40" :class="{ 'open': openFaq === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer text-white/60 text-sm leading-relaxed" :class="{ 'open': openFaq === 4 }">
+                        Je vous donne mon avis honnete avant d'intervenir. Si la reparation n'est pas rentable par rapport a la valeur du velo, je vous le dirai. Aucune obligation, le devis est gratuit.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" @click="openFaq = openFaq === 5 ? null : 5" :aria-expanded="openFaq === 5">
+                        Comment se passe le paiement ?
+                        <svg class="faq-chevron w-5 h-5 text-white/40" :class="{ 'open': openFaq === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer text-white/60 text-sm leading-relaxed" :class="{ 'open': openFaq === 5 }">
+                        Especes, carte bancaire (via mon terminal mobile), virement bancaire, ou paiement mobile (Lyf Pay, etc.). La facture detaillee vous est envoyee par email immediatement apres l'intervention.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-20 sm:py-28" aria-labelledby="contact-title">
+        <div class="max-w-7xl mx-auto px-4">
+            <header class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Contact
+                </span>
+                <h2 id="contact-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Pret a rouler ?</h2>
+                <p class="text-lg text-white/60">Le moyen le plus rapide : WhatsApp ou telephone. Ou remplissez le formulaire ci-dessous.</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 reveal">
+                    <form class="glass rounded-2xl p-6 sm:p-8 space-y-5" @submit.prevent="submitForm()" novalidate>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="field">
+                                <input type="text" id="form-name" name="name" placeholder=" " required class="field-input" :class="{ 'has-error': errors.name }" x-model="form.name" @input="errors.name = ''">
+                                <label for="form-name" class="field-label">Votre nom</label>
+                                <div class="field-error" x-show="errors.name" x-text="errors.name" x-transition></div>
+                            </div>
+                            <div class="field">
+                                <input type="tel" id="form-phone" name="phone" placeholder=" " required class="field-input" :class="{ 'has-error': errors.phone }" x-model="form.phone" @input="errors.phone = ''">
+                                <label for="form-phone" class="field-label">Telephone</label>
+                                <div class="field-error" x-show="errors.phone" x-text="errors.phone" x-transition></div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="form-city" name="city" placeholder=" " class="field-input" x-model="form.city">
+                            <label for="form-city" class="field-label">Commune <span class="text-white/20">(optionnel)</span></label>
+                        </div>
+                        <div class="field">
+                            <select id="form-service" name="service" class="field-input field-select" x-model="form.service">
+                                <option value="" disabled selected>Choisissez une prestation</option>
+                                <option value="securite">Forfait Securite — 35€</option>
+                                <option value="standard">Revision Standard — 55€</option>
+                                <option value="vae">Revision Complete VAE — 75€</option>
+                                <option value="crevaison">Reparation crevaison — 15€</option>
+                                <option value="autre">Autre demande</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <textarea id="form-message" name="message" rows="4" placeholder=" " class="field-input resize-none" x-model="form.message"></textarea>
+                            <label for="form-message" class="field-label">Decrivez le probleme <span class="text-white/20">(optionnel)</span></label>
+                        </div>
+                        <button type="submit" class="btn-primary w-full" :disabled="formSubmitting">
+                            <span x-show="!formSubmitting">Envoyer ma demande</span>
+                            <span x-show="formSubmitting" class="inline-flex items-center gap-2">
+                                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                Envoi en cours...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:col-span-2 space-y-4 reveal reveal-d1">
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-lg mb-5">Me contacter directement</h3>
+                        <div class="space-y-4">
+                            <a href="tel:+33681035117" class="flex items-center gap-4 p-3 rounded-xl transition-colors hover:bg-white/5 group">
+                                <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3);">
+                                    <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-white/40">Telephone</div>
+                                    <div class="font-semibold group-hover:text-red-400 transition-colors">06.81.03.51.17</div>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-3 rounded-xl transition-colors hover:bg-white/5 group">
+                                <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);">
+                                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886C3.05 5.198 5.368 1.964 8.844 1.17c3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-white/40">WhatsApp</div>
+                                    <div class="font-semibold group-hover:text-green-400 transition-colors">Ecrire un message</div>
+                                </div>
+                            </a>
+                            <a href="mailto:lateliersebmobile@gmail.com" class="flex items-center gap-4 p-3 rounded-xl transition-colors hover:bg-white/5 group">
+                                <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3);">
+                                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-white/40">Email</div>
+                                    <div class="font-semibold group-hover:text-blue-400 transition-colors text-sm">lateliersebmobile@gmail.com</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-lg mb-3">Horaires</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-white/50">Lundi — Vendredi</span><span class="font-medium">8h — 19h</span></div>
+                            <div class="flex justify-between"><span class="text-white/50">Samedi</span><span class="font-medium">9h — 16h</span></div>
+                            <div class="flex justify-between"><span class="text-white/50">Dimanche</span><span class="text-white/30">Urgences uniquement</span></div>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-lg mb-3">Suivez-moi</h3>
+                        <div class="flex gap-3">
+                            <a href="https://www.facebook.com/ateliersebmobile" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3);" aria-label="Facebook">
+                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="https://wa.me/33681035117" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);" aria-label="WhatsApp">
+                                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886C3.05 5.198 5.368 1.964 8.844 1.17c3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222z"/></svg>
+                            </a>
+                            <a href="https://www.google.com/maps/place/Li%C3%A9vin" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3);" aria-label="Google Maps">
+                                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANDEAU FINAL CTA -->
+    <section class="py-16 sm:py-20 relative overflow-hidden">
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(220,38,38,0.1) 0%, rgba(245,158,11,0.05) 50%, rgba(220,38,38,0.1) 100%);" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-3xl mx-auto px-4 text-center reveal">
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Votre velo n'attendra pas</h2>
+            <p class="text-lg text-white/60 mb-8">Une crevaison, un deriv qui saute, un frein qui tremble ? Contactez-moi maintenant, j'interviens sous 24h.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/33681035117?text=Bonjour%20S%C3%A9b%2C%20j%27ai%20besoin%20d%27une%20r%C3%A9paration%20v%C3%A9lo%20%F0%9F%9A%B4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.466-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a19.79 19.79 0 01-10.16-3.222A20.32 20.32 0 013.05 8.886C3.05 5.198 5.368 1.964 8.844 1.17c3.809-.888 7.305.22 9.683 3.12 1.856 2.25 2.344 5.785 1.655 8.379-.604 2.28-2.07 4.24-3.973 5.203-.996.5-2.305.686-3.178.574-.93-.115-1.984-.39-2.985-1.151l-.322-.222z"/></svg>
+                    Ecrire sur WhatsApp
+                </a>
+                <a href="tel:+33681035117" class="btn-primary">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    06.81.03.51.17
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div>
+                    <a href="#" class="flex items-center gap-2.5 text-white font-extrabold text-lg mb-4">
+                        <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-4 4h3l-2 4 4-4h-3l2-4z"/></svg>
+                        Atelier Seb Mobile
+                    </a>
+                    <p class="text-sm text-white/40 leading-relaxed">Reparation et entretien de velos et VAE a domicile dans le Bassin Minier. Micro-entreprise assuree RC Pro.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/60 mb-4">Navigation</h4>
+                    <nav class="space-y-2" aria-label="Navigation pied de page">
+                        <a href="#prestations" class="block text-sm text-white/40 hover:text-white transition-colors">Prestations</a>
+                        <a href="#tarifs" class="block text-sm text-white/40 hover:text-white transition-colors">Tarifs</a>
+                        <a href="#zone" class="block text-sm text-white/40 hover:text-white transition-colors">Zone d'intervention</a>
+                        <a href="#faq" class="block text-sm text-white/40 hover:text-white transition-colors">FAQ</a>
+                        <a href="#contact" class="block text-sm text-white/40 hover:text-white transition-colors">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/60 mb-4">Legal</h4>
+                    <div class="space-y-2 text-sm text-white/40">
+                        <p>SIRET : a completer</p>
+                        <p>Assurance RC Pro : a completer</p>
+                        <p>Siege : Secteur Lievin (62800)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/30">
+                <p>&copy; <span x-text="new Date().getFullYear()"></span> Atelier Seb Mobile. Tous droits reserves.</p>
+                <p>Fait avec pedalement dans le Bassin Minier</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOASTS -->
+    <div class="toast-container" aria-live="polite">
+        <template x-for="toast in toasts" :key="toast.id">
+            <div class="toast" :class="toast.type === 'success' ? 'toast-success' : 'toast-error'" x-text="toast.message" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-full"></div>
+        </template>
+    </div>
+
+    <script>
+        function page() {
+            return {
+                mobileMenu: false,
+                form: { name: '', phone: '', city: '', service: '', message: '' },
+                errors: { name: '', phone: '' },
+                formSubmitting: false,
+                toasts: [],
+
+                init() {
+                    this.$watch('mobileMenu', (val) => {
+                        document.body.style.overflow = val ? 'hidden' : '';
+                    });
+                    this.initScrollReveal();
+                    this.initParticles();
+                    window.animateCounter = this.animateCounter.bind(this);
+                },
+
+                animateCounter(el, target, duration) {
+                    const isFloat = target % 1 !== 0;
+                    const startTime = performance.now();
+                    const update = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = eased * target;
+                        if (isFloat) {
+                            el.textContent = current.toFixed(1).replace('.', ',');
+                        } else {
+                            el.textContent = Math.floor(current).toLocaleString('fr-FR');
+                        }
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            if (isFloat) {
+                                el.textContent = target.toFixed(1).replace('.', ',');
+                            } else {
+                                el.textContent = target.toLocaleString('fr-FR');
+                            }
+                            if (!isFloat && target >= 100) el.textContent += '+';
+                        }
+                    };
+                    requestAnimationFrame(update);
+                },
+
+                initScrollReveal() {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+                    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                },
+
+                initParticles() {
+                    const canvas = document.getElementById('particles-canvas');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    let particles = [];
+                    let animId;
+                    const PARTICLE_COUNT = 40;
+                    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                    resize();
+                    window.addEventListener('resize', resize);
+                    for (let i = 0; i < PARTICLE_COUNT; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3,
+                            r: Math.max(1, Math.random() * 2),
+                            opacity: Math.random() * 0.3 + 0.05
+                        });
+                    }
+                    const draw = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        particles.forEach(p => {
+                            p.x += p.vx; p.y += p.vy;
+                            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, Math.max(0.5, p.r), 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(220, 38, 38, ${p.opacity})`;
+                            ctx.fill();
+                        });
+                        for (let i = 0; i < particles.length; i++) {
+                            for (let j = i + 1; j < particles.length; j++) {
+                                const dx = particles[i].x - particles[j].x;
+                                const dy = particles[i].y - particles[j].y;
+                                const dist = Math.sqrt(dx * dx + dy * dy);
+                                if (dist < 150) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(particles[i].x, particles[i].y);
+                                    ctx.lineTo(particles[j].x, particles[j].y);
+                                    ctx.strokeStyle = `rgba(220, 38, 38, ${0.06 * (1 - dist / 150)})`;
+                                    ctx.lineWidth = 0.5;
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+                        animId = requestAnimationFrame(draw);
+                    };
+                    draw();
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.hidden) cancelAnimationFrame(animId);
+                        else draw();
+                    });
+                },
+
+                submitForm() {
+                    this.errors = { name: '', phone: '' };
+                    let valid = true;
+                    if (!this.form.name.trim()) { this.errors.name = 'Le nom est requis'; valid = false; }
+                    else if (this.form.name.trim().length < 2) { this.errors.name = 'Le nom doit contenir au moins 2 caracteres'; valid = false; }
+                    const phoneClean = this.form.phone.replace(/[\s.\-()]/g, '');
+                    if (!phoneClean) { this.errors.phone = 'Le telephone est requis'; valid = false; }
+                    else if (!/^[\+]?[0-9]{8,14}$/.test(phoneClean)) { this.errors.phone = 'Numero de telephone invalide'; valid = false; }
+                    if (!valid) return;
+                    this.formSubmitting = true;
+                    let msg = `Bonjour Seb, je souhaite une reparation velo.\n\nNom : ${this.form.name}\nTel : ${this.form.phone}`;
+                    if (this.form.city) msg += `\nCommune : ${this.form.city}`;
+                    if (this.form.service) {
+                        const services = { securite: 'Forfait Securite (35€)', standard: 'Revision Standard (55€)', vae: 'Revision Complete VAE (75€)', crevaison: 'Reparation crevaison (15€)', autre: 'Autre demande' };
+                        msg += `\nPrestation : ${services[this.form.service] || this.form.service}`;
+                    }
+                    if (this.form.message) msg += `\nDetails : ${this.form.message}`;
+                    const whatsappUrl = `https://wa.me/33681035117?text=${encodeURIComponent(msg)}`;
+                    setTimeout(() => {
+                        this.formSubmitting = false;
+                        this.addToast('Redirection vers WhatsApp...', 'success');
+                        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                        this.form = { name: '', phone: '', city: '', service: '', message: '' };
+                    }, 800);
+                },
+
+                addToast(message, type = 'success') {
+                    const id = Date.now();
+                    this.toasts.push({ id, message, type });
+                    setTimeout(() => { this.toasts = this.toasts.filter(t => t.id !== id); }, 4000);
+                }
+            };
+        }
+    </script>
+</body>
+</html>
