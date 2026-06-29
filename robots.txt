@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://lateliersebmobile-fr.github.io/site-velo/sitemap.xml
